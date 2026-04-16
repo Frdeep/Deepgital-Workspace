@@ -11,8 +11,10 @@ services:
     plan: free
     region: frankfurt
     buildCommand: "npm install && npx turbo run build --filter=@colanode/server"
-    startCommand: "cd apps/server && npm run start"
+    startCommand: "node apps/server/dist/index.js"
     envVars:
+      - key: NODE_VERSION
+        value: "22"
       - key: POSTGRES_URL
         fromDatabase:
           name: deepgital-db
