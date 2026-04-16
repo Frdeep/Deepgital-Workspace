@@ -1,4 +1,10 @@
 services:
+  - type: redis
+    name: deepgital-redis
+    plan: free
+    region: frankfurt
+    ipAllowList: [] # empty array means all internal traffic allowed
+
   - type: web
     name: deepgital-server
     env: node
@@ -25,9 +31,3 @@ databases:
     user: colanode_user
     plan: free
     region: frankfurt
-
-  - type: redis
-    name: deepgital-redis
-    plan: free
-    region: frankfurt
-    ipAllowList: [] # empty array means all internal traffic allowed
