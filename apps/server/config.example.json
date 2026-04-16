@@ -4,11 +4,15 @@
 
   "name": "Colanode Local",
   "web": {
-    "domain": "localhost:4000"
+    "domain": "https://web-eta-nine-97.vercel.app"
   },
   "mode": "standalone",
   "cors": {
-    "origin": "http://localhost:4000",
+    "origin": [
+      "http://localhost:4000",
+      "https://web-eta-nine-97.vercel.app",
+      "https://web-43m9d1cln-deepgitalcontact-3911s-projects.vercel.app"
+    ],
     "maxAge": 7200
   },
   "account": {

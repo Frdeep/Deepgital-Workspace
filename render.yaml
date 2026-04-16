@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: deepgital-server
+    env: node
+    plan: free
+    region: frankfurt
+    buildCommand: "npm install && npx turbo run build --filter=@colanode/server"
+    startCommand: "cd apps/server && npm run start"
+    envVars:
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: deepgital-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: deepgital-redis
+          property: connectionString
+      - key: CONFIG
+        value: "/opt/render/project/src/apps/server/config.example.json"
+
+databases:
+  - name: deepgital-db
+    databaseName: colanode_db
+    user: colanode_user
+    plan: free
+    region: frankfurt
+
+  - type: redis
+    name: deepgital-redis
+    plan: free
+    region: frankfurt
+    ipAllowList: [] # empty array means all internal traffic allowed
